@@ -12,8 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      // TODO: search by traits
-     traits(people);
+     searchByTrait(people);
       break;
       default:
     app(people); // restart app
@@ -78,47 +77,46 @@ function searchByName(people){
 
 
 function searchByTrait(people){
-  let trait = promptFor("What is a trait you would like to search for? You may choose 2-5 of the following traits \n Eye Color \n Gender \n Age \n Weight \n Height in inches")
-  let eyecolor;
-  let gender;
-  let height;
-  let age;
-  let weight;
+  let trait = promptFor("What is a trait you would like to search for? You may choose 2-5 of the following traits \n Eye Color \n Gender \n Age \n Weight \n Height ")
+  let ans;
+  while(ans == 'yes'){
   switch(trait){
     case 'Eye Color':
     searchByEyeColor(people);
     break;
 
     case 'Gender':
-    gender = promptFor('Would you like to search by male or female?')
+    searchByGender(people);
     break;
 
     case 'Height':
-    height = promptFor("What is the height (In inches) you would like to search by?")
+    searchByHeight(people);
     break;
 
     case 'Weight':
-    weight = promptFor("What is the weight you would like to search by?")
+    searchByWeight(people);
     break;
 
     case 'Age':
-      age = promptFor("What is the age you would like to search by?")
+      getAge(people);
+      searchByAge(people);
       break;
 
       default:
         alert("You must choose from one of those traits.")
-        traits(people)
+        searchByTrait(people);
         break;
     }
-    let ans = promptFor("Would you like to include another trait into your search?")
+    ans = promptFor("Would you like to include another trait into your search?",yesNo).toLowerCase();
     if(ans == 'yes'){
       traits(people);
     }
     else{
-      
+      app(people);
     }
-
+  }
 }
+
 function searchByEyeColor(people){
   let eyecolor = promptFor("What eye color would you like to search by?\n brown \n black \n hazel \n blue \n green");
   
@@ -131,6 +129,56 @@ function searchByEyeColor(people){
     }
   })
 }
+
+function searchByGender(people){
+  let gender = promptFor('Would you like to search by male or female?');
+  let foundPerson = people.filter(function(person){
+    if(person.gender == gender){
+      return true;
+
+    }
+    else{
+      return false;
+    }
+  })
+}
+
+function searchByHeight(people){
+  let height = promptFor("What is the height (In inches) you would like to search by?");
+  let foundPerson = people.filter(function(person){
+    if(person.height == height){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+}
+
+function searchByWeight(people){
+  let weight = promptFor("What is the weight you would like to search by?");
+  let foundPerson = people.filter(function(person){
+    if(person.weight == weight){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+}
+
+function searchByAge(people){
+  let age = promptFor("What is the age you would like to search by?");
+  let foundPerson = people.filter(function(person){
+    if(person.age == age){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+}
+
 function getAge(people){
   let foundPerson = people.filter(function(person){
   let split = person.dob.split("/");
