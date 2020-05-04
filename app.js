@@ -59,7 +59,7 @@ function mainMenu(person, people){
 }
 function findFamily(people){
 let foundPerson = people.filter(function(person){
-if(person.lastName == )
+
 })
 }
 function findDescendants(people, idnum){
