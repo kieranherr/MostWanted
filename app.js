@@ -106,19 +106,23 @@ function searchByTrait(people){
 
     case 'gender':
     trait = searchByGender(people);
+    trait = displayPeople(people);
     break;
 
     case 'height':
     trait = searchByHeight(people);
+    trait = displayPeople(people);
     break;
 
     case 'weight':
     trait = searchByWeight(people);
+    trait = displayPeople(people);
     break;
 
     case 'age':
       getAge(people);
       trait = searchByAge(people);
+      trait = displayPeople(people);
       break;
 
       default:
