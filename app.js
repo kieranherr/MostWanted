@@ -38,8 +38,8 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    alert(person.firstName + '\n' +person.lastName +'\n'+ person.gender +'\n'+ person.height +'\n'+ person.weight +'\n'+ person.eyeColor +'\n'+ person.occupation);
-    
+      getAge(people);
+    displayPerson(person);    
     break;
     case "family":
     // TODO: get person's family
@@ -56,6 +56,8 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+
+
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
@@ -84,7 +86,7 @@ function searchByTrait(people){
   let weight;
   switch(trait){
     case 'Eye Color':
-    eyecolor = promptFor("What eye color would you like to search by?\n brown \n black \n hazel \n blue \n green")
+    searchByEyeColor(people);
     break;
 
     case 'Gender':
@@ -129,7 +131,14 @@ function searchByEyeColor(people){
     }
   })
 }
-
+function getAge(people){
+  let foundPerson = people.filter(function(person){
+  let split = person.dob.split("/");
+  let birthyear = parseInt(split[2]);
+let age = 2020-birthyear;
+person.age = age;
+  })
+}
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -142,9 +151,15 @@ function displayPerson(person){
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  // TODO: finish getting the rest of the information to display
+  personInfo += "Gender: " +person.gender + "\n";
+  personInfo += "Height: " +person.height + "\n";
+  personInfo += "Weight: " +person.weight + "\n";
+  personInfo += "Eye Color: " +person.eyeColor + "\n";
+  personInfo += "Occupation: " +person.occupation + "\n";
+  personInfo += "Age: " +person.age;
   alert(personInfo);
 }
+
 
 // function that prompts and validates user input
 function promptFor(question, valid){
