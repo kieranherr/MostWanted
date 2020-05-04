@@ -77,29 +77,28 @@ function searchByName(people){
 
 
 function searchByTrait(people){
-  let trait = promptFor("What is a trait you would like to search for? You may choose 2-5 of the following traits \n Eye Color \n Gender \n Age \n Weight \n Height ")
-  let ans;
-  while(ans == 'yes'){
+  let trait = promptFor("What is a trait you would like to search for? You may choose 2-5 of the following traits \n Eye Color \n Gender \n Age \n Weight \n Height",chars)
+  
   switch(trait){
     case 'Eye Color':
-    searchByEyeColor(people);
+     trait = searchByEyeColor(people);
     break;
 
     case 'Gender':
-    searchByGender(people);
+    trait = searchByGender(people);
     break;
 
     case 'Height':
-    searchByHeight(people);
+    trait = searchByHeight(people);
     break;
 
     case 'Weight':
-    searchByWeight(people);
+    trait = searchByWeight(people);
     break;
 
     case 'Age':
       getAge(people);
-      searchByAge(people);
+      trait = searchByAge(people);
       break;
 
       default:
@@ -107,18 +106,18 @@ function searchByTrait(people){
         searchByTrait(people);
         break;
     }
-    ans = promptFor("Would you like to include another trait into your search?",yesNo).toLowerCase();
+    let ans = promptFor("Would you like to include another trait into your search?",yesNo).toLowerCase();
     if(ans == 'yes'){
       traits(people);
     }
     else{
       app(people);
     }
-  }
+  
 }
 
 function searchByEyeColor(people){
-  let eyecolor = promptFor("What eye color would you like to search by?\n brown \n black \n hazel \n blue \n green");
+  let eyecolor = promptFor("What eye color would you like to search by?\n brown \n black \n hazel \n blue \n green", chars);
   
   let foundPerson = people.filter(function(person){
     if(person.eyeColor === eyecolor){
@@ -128,6 +127,7 @@ function searchByEyeColor(people){
       return false;
     }
   })
+  return foundPerson[0];
 }
 
 function searchByGender(people){
@@ -141,6 +141,7 @@ function searchByGender(people){
       return false;
     }
   })
+  return foundPerson[0];
 }
 
 function searchByHeight(people){
@@ -153,6 +154,7 @@ function searchByHeight(people){
       return false;
     }
   })
+  return foundPerson[0];
 }
 
 function searchByWeight(people){
@@ -165,6 +167,7 @@ function searchByWeight(people){
       return false;
     }
   })
+  return foundPerson[0];
 }
 
 function searchByAge(people){
@@ -177,6 +180,7 @@ function searchByAge(people){
       return false;
     }
   })
+  return foundPerson[0];
 }
 
 function getAge(people){
