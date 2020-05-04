@@ -41,10 +41,12 @@ function mainMenu(person, people){
     displayPerson(person);    
     break;
     case "family":
-    // TODO: get person's family
+    
     break;
     case "descendants":
-    // TODO: get person's descendants
+    findDescendants(people, person.id);
+    //alert("Parents are: "+parent.firstName+" "+parent.lastName);
+
     break;
     case "restart":
     app(people); // restart
@@ -55,8 +57,24 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
-
-
+function findFamily(people){
+let foundPerson = people.filter(function(person){
+if(person.lastName == )
+})
+}
+function findDescendants(people, idnum){
+let foundPerson = people.filter(function(person){
+if(idnum == person.parents){
+alert("found");
+return true;
+}
+else{
+alert("not found");
+return false;
+}
+})
+return  foundPerson[0]
+}
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
